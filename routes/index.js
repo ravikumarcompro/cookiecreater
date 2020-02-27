@@ -9,11 +9,6 @@ router.get('/redirect', function(req, res, next) {
 
 /* GET home page. */
 router.post('/set-cookie', function(req, res, next) {
-    function cookieExpiryDate(dayCount) {
-    let dayInMS = 1000 * 60 * 60 * 24 * dayCount;
-    return new Date(Date.now() + dayInMS).toUTCString();
-  }
- var expire =  cookieExpiryDate(30);
   console.log(req.get('origin'));
   console.log(req.get('Origin'));
   console.log(req.headers.origin);
@@ -24,7 +19,7 @@ router.post('/set-cookie', function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   let randomNumber=Math.random().toString();
   randomNumber=randomNumber.substring(2,randomNumber.length);
-  res.cookie('mycokkieName',randomNumber, { domain: '.cokkie-validator.herokuapp.com', path: '/', httpOnly: true, secure: true, sameSite: false , expires:expire })
+  res.cookie('mycokkieName',randomNumber, { domain: '.cokkie-validator.herokuapp.com', path: '/', httpOnly: true, secure: true, sameSite: false , expires:new Date(Date.now() + 2592000000) })
   res.send('setting cookies.!!');
 });
 
