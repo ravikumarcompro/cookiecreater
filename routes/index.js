@@ -9,11 +9,11 @@ router.get('/redirect', function(req, res, next) {
 
 /* GET home page. */
 router.post('/set-cookie', function(req, res, next) {
-   _cookieExpiryDate(dayCount) {
+    function cookieExpiryDate(dayCount) {
     let dayInMS = 1000 * 60 * 60 * 24 * dayCount;
     return new Date(Date.now() + dayInMS).toUTCString();
   }
- var expire =  _cookieExpiryDate(30);
+ var expire =  cookieExpiryDate(30);
   console.log(req.get('origin'));
   console.log(req.get('Origin'));
   console.log(req.headers.origin);
